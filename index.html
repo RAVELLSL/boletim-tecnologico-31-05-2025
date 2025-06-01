@@ -13,22 +13,19 @@
 html {
   scroll-behavior: smooth;
   height: 100%;
+  background-color: #000; /* AJUSTE ANTERIOR E REFORÇADO: Preto absoluto */
 }
 
 body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background:
-    radial-gradient(at top left, rgba(255,255,255,0.05), transparent 50%),
-    radial-gradient(at bottom right, rgba(255,255,255,0.05), transparent 50%),
-    linear-gradient(135deg, #000, #444);
-  background-blend-mode: screen;
-  background-size: 150% 150%;
+  background-color: #000; /* AJUSTE: Mesmo preto absoluto do HTML para garantir uma única tonalidade */
   font-family: 'Open Sans', sans-serif;
   color: #fff;
   transform: scale(0.90);
   transform-origin: top center;
+  box-sizing: border-box;
 }
 
 .body-modal-open {
@@ -284,7 +281,7 @@ article.news-article li {
 .article-image img:hover {
   transform: scale(1.05);
 }
-  .article-image img:focus {
+.article-image img:focus {
     outline: 2px solid #ff9800;
     outline-offset: 2px;
 }
@@ -313,27 +310,18 @@ article.news-article li {
   visibility: hidden;
   opacity: 0;
   position: fixed;
-  z-index: 10000; /* Z-index muito alto para garantir a sobreposição */
+  z-index: 10000;
   top: 0;
-  /* Para compensar o body scale(0.9) e transform-origin: top center:
-     left precisa ser - ( (100vw - 90vw) / 2 ) / 0.9 = - (5vw) / 0.9 = -5.555...vw
-     width e height precisam ser 100(v[w|h]) / 0.9 = 111.111...v[w|h] */
-  left: -5.5555555556vw; /* calc(-5vw / 0.9) */
-  width: 111.1111111111vw; /* calc(100vw / 0.9) */
-  height: 111.1111111111vh; /* calc(100vh / 0.9) */
-  background-color: rgba(0,0,0,1); /* Totalmente opaco para esconder o fundo */
+  left: -5.5555555556vw;
+  width: 111.1111111111vw;
+  height: 111.1111111111vh;
+  background-color: rgba(0,0,0,1);
   transition: opacity 0.25s ease, visibility 0s linear 0.25s;
   display: flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  /* O padding interno do modal (overlay) que cria o espaço ao redor do modal-content.
-     Este padding será em relação às dimensões compensadas do modal.
-     Se o modal agora é ~111vw/vh, um padding de 20px ainda será 20px. */
   padding: 20px;
-  /* Se o body tem transform-origin: top center, a compensação do 'top' pode ser necessária se 'top:0'
-     não alinhar com o topo real da viewport. No entanto, 'top:0' no contexto do body transformado
-     (que tem origem no topo) deve estar correto para o início vertical. */
 }
 
 .modal.modal-open {
@@ -347,9 +335,9 @@ article.news-article li {
   padding: 25px;
   padding-top: 60px;
   border: 1px solid #aaa;
-  width: 100%; /* Ocupa o espaço disponível dentro do .modal (após padding) */
+  width: 100%;
   max-width: 950px;
-  height: 100%; /* Ocupa a altura disponível dentro do .modal (após padding) */
+  height: 100%;
   border-radius: 10px;
   position: relative;
   color: #333;
@@ -358,7 +346,7 @@ article.news-article li {
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   overflow-y: auto;
   box-sizing: border-box;
-  transform: scale(0.95); /* Animação de entrada do conteúdo */
+  transform: scale(0.95);
   transition: transform 0.25s ease;
   display: flex;
   flex-direction: column;
@@ -383,7 +371,6 @@ article.news-article li {
 .modal-content::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-
 
 .modal-close {
   background: transparent;
@@ -454,7 +441,6 @@ article.news-article li {
     content: '\2212';
 }
 
-
 .accordion-content {
   background-color: #f7f7f7;
   color: #333;
@@ -472,7 +458,6 @@ article.news-article li {
     flex-grow: 1;
 }
 
-
 .tts-pause {
   position: absolute;
   width: 1px;
@@ -489,7 +474,7 @@ article.news-article li {
     visibility: hidden;
     opacity: 0;
     position: fixed;
-    z-index: 10100; /* Acima do modal principal compensado */
+    z-index: 10100;
     left: 0;
     top: 0;
     width: 100%;
@@ -545,10 +530,6 @@ article.news-article li {
 }
 
 /* Media Queries */
-/* As definições de posicionamento/tamanho do .modal nas media queries foram removidas
-   pois ele agora tenta cobrir a tela inteira compensando a transformação do body.
-   O padding do .modal pode ser ajustado responsivamente se necessário. */
-
 @media (min-width: 601px) {
     .menu ul {
         flex-direction: row;
@@ -560,7 +541,7 @@ article.news-article li {
         width: auto;
         max-width: none;
     }
-      .menu ul li a {
+    .menu ul li a {
         padding: 8px 12px;
         font-size: 0.9em;
     }
@@ -613,7 +594,7 @@ article.news-article li {
     header .edition {
         font-size: 1.3em;
     }
-      .highlights-grid {
+    .highlights-grid {
         gap: 20px;
     }
     .highlight-item .highlight-thumbnail {
@@ -627,9 +608,9 @@ article.news-article li {
     }
     .modal {
         padding: 15px;
-        left: -5.5555555556vw; /* Mantém compensação */
-        width: 111.1111111111vw; /* Mantém compensação */
-        height: 111.1111111111vh; /* Mantém compensação */
+        left: -5.5555555556vw;
+        width: 111.1111111111vw;
+        height: 111.1111111111vh;
     }
     .modal-content {
         padding: 20px;
@@ -677,9 +658,9 @@ article.news-article li {
   }
   .modal {
       padding: 10px;
-      left: -5.5555555556vw; /* Mantém compensação */
-      width: 111.1111111111vw; /* Mantém compensação */
-      height: 111.1111111111vh; /* Mantém compensação */
+      left: -5.5555555556vw;
+      width: 111.1111111111vw;
+      height: 111.1111111111vh;
   }
   .modal-content {
     padding: 15px;
@@ -693,11 +674,11 @@ article.news-article li {
   article.news-article h3 {
     font-size: 1.4em;
   }
-  article.news-article p {
-    font-size: 0.95em;
+  article.news-article p, article.news-article li {
+    font-size: 1em; /* Fonte aumentada na iteração anterior */
   }
   .accordion-header {
-    font-size: 1.1em;
+    font-size: 1.25em; /* Fonte aumentada na iteração anterior */
     padding: 12px 35px 12px 12px;
   }
   .accordion-header::after {
@@ -729,10 +710,10 @@ article.news-article li {
   }
   .highlight-item .highlight-thumbnail {
       height: 110px;
-    }
+  }
     .highlight-item h3 {
     font-size: 1.2em;
-    }
+  }
   .highlight-item p.highlight-article-title {
     font-size: 0.9em;
   }
@@ -742,9 +723,9 @@ article.news-article li {
   }
   .modal {
       padding: 5px;
-      left: -5.5555555556vw; /* Mantém compensação */
-      width: 111.1111111111vw; /* Mantém compensação */
-      height: 111.1111111111vh; /* Mantém compensação */
+      left: -5.5555555556vw;
+      width: 111.1111111111vw;
+      height: 111.1111111111vh;
   }
   .modal-content {
     padding: 15px 10px;
@@ -758,11 +739,11 @@ article.news-article li {
   article.news-article h3 {
     font-size: 1.3em;
   }
-  article.news-article p {
-    font-size: 0.9em;
+  article.news-article p, article.news-article li {
+    font-size: 0.95em; /* Fonte aumentada na iteração anterior */
   }
   .accordion-header {
-    font-size: 1em;
+    font-size: 1.15em; /* Fonte aumentada na iteração anterior */
     padding: 10px 30px 10px 10px;
   }
   .accordion-header::after {
